@@ -52,8 +52,8 @@ class Program
         // לבקש ממנו להכניס קודם כל מקרר?
         do
         {
-            try
-            {
+           // try
+            //{
 
            
                 ShowMenu();
@@ -241,7 +241,7 @@ class Program
                 {
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
-            }
+            /*{
 
 
             catch (Exception e)
@@ -250,7 +250,7 @@ class Program
 
                 throw;
             }
-            
+            */
         } while (choice != 100);
     }
 
