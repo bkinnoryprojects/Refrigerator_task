@@ -12,9 +12,9 @@ namespace Refrigerator_task.Logic
     {
         public static double Free_space_in_Refrigerator( Refrigerator refrigerator )
         {   double free_space_Sum = 0;
-            foreach (var shelf in refrigerator.MyShelfs)
+            foreach (var shelf in refrigerator.Myshelves)
             {
-                free_space_Sum += Free_space_in_Shelf(shelf);//TODO לפרק לפי מדף כמה מקום יש בכל מדף אולי כדאי במפה 
+                free_space_Sum += Free_space_in_Shelf(shelf);
             }
             return  free_space_Sum;
         }
@@ -25,14 +25,14 @@ namespace Refrigerator_task.Logic
             {
                 sum += item.itemSize;
             }
-            return shelf.ShelfSize-sum;
+            return shelf.shelvesize-sum;
         }
         // ליצור פונקצית עז רשאומרת איפה יש מקום לפריט הזה והיא מחזירה את המדף שיש בו מקום אפשר גם ליעל למדף עם המקום הכי נכון
         public static void Enter_Item_To_Refrigerator(Refrigerator refrigerator, Item item)
         {
             if (Free_space_in_Refrigerator(refrigerator)>0)
             {
-                foreach (var shelf in refrigerator.MyShelfs)// TODO לפי המקו ם של המדפים
+                foreach (var shelf in refrigerator.Myshelves)// TODO לפי המקו ם של המדפים
                 {
                     if(Free_space_in_Shelf(shelf) >= item.itemSize)
                     {
@@ -44,18 +44,18 @@ namespace Refrigerator_task.Logic
 
 
                 }
-                throw new Exception(" The item is to big , not enough space on the Shelfs ");//לזרוק חריגה או להדפיס?
+                throw new Exception(" The item is to big , not enough space on the shelves ");
             }
             else
             {
-                throw new Exception("Not enough space in the fridge");//לזרוק חריגה או להדפיס?
+                throw new Exception("Not enough space in the fridge");
 
             }
         }
         public static Item Take_out_item_from_Refrigerator(Refrigerator refrigerator ,Guid itemId )
         {
             int item_index;
-            foreach (var shelf in refrigerator.MyShelfs)
+            foreach (var shelf in refrigerator.Myshelves)
             {
                 item_index= find_Position_Item_On_Shelf(shelf, itemId);
 
@@ -83,7 +83,7 @@ namespace Refrigerator_task.Logic
                     return i;
                 }
             }
-            return -1;// TODO לעשות חריגות וזריקות
+            return -1;
 
         }
         public static List<Item> Throw_Expired_Item_From_Shelf( Shelf shelf)// לשנות לאייטם?
@@ -105,7 +105,7 @@ namespace Refrigerator_task.Logic
         {
             List<Item> expiredItem = new List<Item>();
 
-            foreach (var shelf in refrigerator.MyShelfs)
+            foreach (var shelf in refrigerator.Myshelves)
             {
                 expiredItem.AddRange(Throw_Expired_Item_From_Shelf(shelf));
             }
@@ -117,7 +117,7 @@ namespace Refrigerator_task.Logic
         public static List<Item> Find_Items_that_are( string itemKashrut, string ItemType, Refrigerator refrigerator)
         {
             List<Item> suitableItems = new List<Item>();
-            foreach (var shelf in refrigerator.MyShelfs)
+            foreach (var shelf in refrigerator.Myshelves)
             {
                 foreach(var item in shelf.MyItems)
                 {
@@ -134,9 +134,7 @@ namespace Refrigerator_task.Logic
         {
             Get_Space_In_Refrigerator(refrigerator, 20);
         }
-            // עומד לפוג עוד כך וכך זמן
-            // פונקציה שמקבלת מה הכשרות וכמה זמן לפוג 
-            //
+        
         public  static void Get_Space_In_Refrigerator(Refrigerator refrigerator, double space)
         {
 
@@ -148,20 +146,20 @@ namespace Refrigerator_task.Logic
                 if (Free_space_in_Refrigerator(refrigerator) < space)
                 {
                     List<Item> ToThrowItems = new List<Item>();
-                    foreach (var shelf in refrigerator.MyShelfs)
+                    foreach (var shelf in refrigerator.Myshelves)
                     {
                         ToThrowItems.AddRange(Item_on_shelf_about_to_expire(shelf, "Dairy", 3));
                     }
                     if ((Free_space_in_Refrigerator(refrigerator) + Sum_Size_Items(ToThrowItems)) < 20)
                     {
-                        foreach (var shelf in refrigerator.MyShelfs)
+                        foreach (var shelf in refrigerator.Myshelves)
                         {
                             ToThrowItems.AddRange(Item_on_shelf_about_to_expire(shelf, "Meat", 7));
                         }
                     }
                     if ((Free_space_in_Refrigerator(refrigerator) + Sum_Size_Items(ToThrowItems)) < 20)
                     {
-                        foreach (var shelf in refrigerator.MyShelfs)
+                        foreach (var shelf in refrigerator.Myshelves)
                         {
                             ToThrowItems.AddRange(Item_on_shelf_about_to_expire(shelf, "parve", 2));
                             // ככה כותבים פרווה?
@@ -169,7 +167,7 @@ namespace Refrigerator_task.Logic
                     }
                     if ((Free_space_in_Refrigerator(refrigerator) + Sum_Size_Items(ToThrowItems)) < 20)
                     {
-                        Console.WriteLine("this is not the time to shop");//חריגה או על המסך? ולראות שכתבתי נכון
+                        Console.WriteLine("this is not the time to shop");
                         return;
                     }
                     foreach (var item in ToThrowItems)
@@ -185,7 +183,7 @@ namespace Refrigerator_task.Logic
         }
         public static void Throw_Item_From_Rrefrigerator( Item item,Refrigerator refrigerator)
         {//להוסיף בדיקה אם הוא נמצא או לא
-            foreach (var shelf in refrigerator.MyShelfs)
+            foreach (var shelf in refrigerator.Myshelves)
             {
                 Throw_Item_From_Shelf( item, shelf);
             }
@@ -211,10 +209,9 @@ namespace Refrigerator_task.Logic
 
 
 
-        //..האם האייטם הזה עומד לפוג תוך כך זמן מחזירה כן ולא
         public static List<Item> Item_on_shelf_about_to_expire(Shelf shelf, string itemkashrut,int numOfDays )///לשנות את השם למשהו שהוא לא זריקה כי הוא לא זורק
         {
-            // בדיקה שהסטרינגים בסדר
+          
             List<Item> ToThrowItems = new List<Item>();
             DateTime now = DateTime.Now;
             DateTime DayToCome = now.AddDays(numOfDays );

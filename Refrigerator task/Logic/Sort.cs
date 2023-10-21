@@ -16,7 +16,7 @@ namespace Refrigerator_task.Logic
         public static List<Item> Sort_Item_By_Expiration_Date(Refrigerator refrigerator)
         {
             List<Item> items = new List<Item>();
-            foreach (var shelf in refrigerator.MyShelfs)
+            foreach (var shelf in refrigerator.Myshelves)
             {
                 items.AddRange(shelf.MyItems);
 
@@ -27,7 +27,7 @@ namespace Refrigerator_task.Logic
         }
         public static List<Shelf> Sort_Shelves_By_Free_Space( Refrigerator refrigerator)
         {
-            List<Shelf> Shelves = refrigerator.MyShelfs;
+            List<Shelf> Shelves = refrigerator.Myshelves;
             List<Shelf> orderShelves =Shelves.OrderByDescending(shelf => Utils.Free_space_in_Shelf(shelf)).ToList();
             return orderShelves;
 

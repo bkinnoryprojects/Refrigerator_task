@@ -11,12 +11,12 @@ namespace Refrigerator_task.Data.Objects
         const int ShelfConstSize = 10; // TODO
         public Guid ShelfId { get; set; }
         public int ShelfFloore { get; set; }
-        public int ShelfSize { get; set; }
+        public int shelvesize { get; set; }
         public List<Item> MyItems { get; set; }
         public Shelf(int ShelfFloore )
         {
             this.ShelfId = Guid.NewGuid();
-            this.ShelfSize = ShelfConstSize;
+            this.shelvesize = ShelfConstSize;
             this.MyItems = new List<Item>();    
             this.ShelfFloore = ShelfFloore;
             this.MyItems= new List<Item>();
@@ -26,7 +26,7 @@ namespace Refrigerator_task.Data.Objects
 
         public override string ToString()
         {
-            string details = $"Shelf Details: ID: {ShelfId}, Floor: {ShelfFloore}, Size: {ShelfSize}\n";
+            string details = $"Shelf Details: ID: {ShelfId}\n Floor: {ShelfFloore}\n Size: {shelvesize}\n";
             details += "Items on the Shelf:\n";
             foreach (var item in MyItems)
             {

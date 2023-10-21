@@ -12,17 +12,17 @@ namespace Refrigerator_task.Data.Objects
         public Guid RefrigeratorId { get; set; }
         public string RefrigeratorColor { get; set; }
         public string RefrigeratorType { get; set; }
-        public int numOfShelfs { get; set; }
+        public int numOfshelves { get; set; }
 
-        public List<Shelf> MyShelfs { get; set; }
+        public List<Shelf> Myshelves { get; set; }
 
-        public Refrigerator(string RefrigeratorColor, string RefrigeratorType, int numOfShelfs=6)
+        public Refrigerator(string RefrigeratorColor, string RefrigeratorType, int numOfshelves=6)
         {   this.RefrigeratorId = Guid.NewGuid();
             this.RefrigeratorColor = RefrigeratorColor;
             this.RefrigeratorType = RefrigeratorType;
-            this.numOfShelfs = numOfShelfs;
-            this.MyShelfs = new List<Shelf>();
-            for (int i = 0; i < numOfShelfs; i++)
+            this.numOfshelves = numOfshelves;
+            this.Myshelves = new List<Shelf>();
+            for (int i = 0; i < numOfshelves; i++)
             {
                 AddShelf(i);
             }
@@ -30,18 +30,18 @@ namespace Refrigerator_task.Data.Objects
         }
 
 
-        public void AddShelf(int shelfFloor)//TODO להוציא ליוטיל
+        public void AddShelf(int shelfFloor)
         {
             Shelf newSelf=new Shelf(shelfFloor);
-            MyShelfs.Add(newSelf);
+            Myshelves.Add(newSelf);
         }
        
         public override string ToString()
         {
-            string details= $"Refrigerator ID: {RefrigeratorId}, Color: {RefrigeratorColor}, Type: {RefrigeratorType}, Number of Shelves: {numOfShelfs}";
+            string details= $"Refrigerator ID: {RefrigeratorId}\n Color: {RefrigeratorColor}\n Type: {RefrigeratorType}\n Number of Shelves: {numOfshelves}\n";
 
-            details += "The Shelfs:\n";
-            foreach (var shelf in MyShelfs)
+            details += "The shelves:\n";
+            foreach (var shelf in Myshelves)
             {
                 details += shelf.ToString();
             }

@@ -37,7 +37,7 @@ namespace Refrigerator_task.Data.Objects
         }
         public override string ToString()
         {
-            return $"Item ID: {IitemId}, Name: {IitemName}, Type: {ItemType}, Kosher: {ItemKosher}, Expiry Date: {itemExpiryDate}, Size: {itemSize}, Shelf: {(MyShelf != null ? MyShelf.ShelfId.ToString() : "N/A")}\n";
+            return $"Item ID: {IitemId}\n Name: {IitemName}\n Type: {ItemType}\n Kosher: {ItemKosher}\n Expiry Date: {itemExpiryDate}\n Size: {itemSize}\n Shelf: {(MyShelf != null ? MyShelf.ShelfId.ToString() : "N/A")}\n";
 
 
         }
