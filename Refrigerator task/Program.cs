@@ -3,7 +3,6 @@
 //לסדר את הפונקציות כל אחת במקום הנכון
 //..להוסיף בבנאי ובכללי בדיקת תקינות
 
-//..להכניס לגיט
 
 
 
@@ -119,14 +118,7 @@ class Program
 
                             }
 
-                        
-                    //לתקן להשתמש בטריי וקאצ
-
-
-                            //מקבלת אייטם (את הפרטים
-                            //בודקת שזה סבבה
-                            // בונה אייטם
-                            //קוראת להוספה
+                     
                             break;
                          case 4:
                             Console.Write("Enter Item id: ");
@@ -144,12 +136,6 @@ class Program
 
                                 }
                             
-                            //לתקן דחוףףףףףף לולאה שתמצא את המזהה ולא תצטרך לזיהוי פריט
-
-                                //קוראת לפונקציה שמוציאה
-
-                                // אחרת לזרוק שזה לא קיים  בפונקציה לבדוק תקינות
-                                //
                             }
                             break;
                         case 5:
@@ -158,8 +144,6 @@ class Program
                             {
                                 Console.WriteLine("the item:"+item5.IitemName);
                             }
-                            // תקרא לפונקציה ניקוי מקרר
-                            // שאלה!!!!! כלל הפריטים שנבדקו(כולמר הכל) או כלל הפריטים שנזרקו(פגי תוקף
 
                             break;
                             case 6:
@@ -183,7 +167,7 @@ class Program
                                 Console.Write("Enter valid item Kashrut (Dairy/Meat/Purve): ");
                                 itemKosher = Console.ReadLine();
                             }
-                            // לבקש מה הכשרות וסוג האוכל
+                
                             List<Item> itemsfound = Utils.Find_Items_that_are(itemKosher6, itemType6, refrigerator);
                             foreach (var item6 in itemsfound)
                             {
@@ -250,7 +234,7 @@ class Program
 
                 throw;
             }
-            */
+            
         } while (choice != 100);
     }
 
